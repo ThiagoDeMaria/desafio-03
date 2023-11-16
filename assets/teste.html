@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Video Embed</title>
+</head>
+<body>
+
+  <div id="video-container"></div>
+
+  <script>
+
+    // Função para extrair o ID do vídeo do URL
+    function extractVideoId(url) {
+      var match = url.match(/[?&]v=([^&]+)/);
+      return match ? match[1] : null;
+    }
+
+    // Função para incorporar o vídeo
+    function embedYouTubeVideo(url) {
+      var videoId = extractVideoId(url);
+
+      if (videoId) {
+        var container = document.getElementById('video-container');
+        var iframe = document.createElement('iframe');
+
+        iframe.width = '560';
+        iframe.height = '315';
+        iframe.src = 'https://www.youtube.com/embed/' + videoId;
+        iframe.frameBorder = '0';
+        iframe.allowFullscreen = true;
+
+        container.appendChild(iframe);
+      } else {
+        console.error('Não foi possível extrair o ID do vídeo do URL.');
+      }
+    }
+
+    // Substitua o URL abaixo pelo link do YouTube que você copiou
+    var youtubeUrl = 'COLOQUE_O_SEU_LINK_DO_YOUTUBE_AQUI';
+    embedYouTubeVideo(youtubeUrl);
+  </script>
+
+</body>
+</html>
+
+
+<div id="pagina_inserir">
+    <!-- Cadastro dos Trailers -->
+    <section>
+        <h2 id="apresentacao_conteudo_h1" class="page-subtitle">Preencha os campos e insira seu filme também.</h2>
+        <div id="cadastro_trailer">
+            <div class="form-wrapper">
+                <div id="inserir_dados">
+                    <input type="text" id="novo_nome" name="filme" placeholder="Insira o nome do Filme">
+                    <input type="text" id="nova_imagem" name="filme" placeholder="Insira endereço de imagem do poster">
+                    <input type="text" id="novo_trailer" name="filme" placeholder="Insira endereço do trailer no embed youtube">
+                </div>
+                <div id="enviar_dados">
+                    <button onClick="adicionarFilme()">Adicionar Filme</button>
+                </div>                        
+            </div>
+            <p id="mensagemDeErro"></p>
+        </div>
+    </section>
+</div>
